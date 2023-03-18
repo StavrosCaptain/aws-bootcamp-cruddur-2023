@@ -23,3 +23,5 @@ sudo ./aws/install
 ![AWS CLI Install](https://github.com/StavrosCaptain/aws-bootcamp-cruddur-2023/blob/main/Images/cli%20install.png?raw=true)
 
 ![STS caller identity](https://github.com/StavrosCaptain/aws-bootcamp-cruddur-2023/blob/main/Images/env.png?raw=true)
+
+![yml (1)](https://github.com/StavrosCaptain/aws-bootcamp-cruddur-2023/blob/main/Images/yml%20(1).png?raw=true)
