@@ -25,3 +25,11 @@ sudo ./aws/install
 ![STS caller identity](https://github.com/StavrosCaptain/aws-bootcamp-cruddur-2023/blob/main/Images/env.png?raw=true)
 
 ![yml (1)](https://github.com/StavrosCaptain/aws-bootcamp-cruddur-2023/blob/main/Images/yml%20(1).png?raw=true)
+
+### SNS Topic
+
+![SNS 1](https://github.com/StavrosCaptain/aws-bootcamp-cruddur-2023/blob/main/Images/Billing%20alarm%201.png?raw=true)
+
+![SNS 2](https://github.com/StavrosCaptain/aws-bootcamp-cruddur-2023/blob/main/Images/Billing%20alarm%202.png?raw=true)
+
+![SNS 3](https://github.com/StavrosCaptain/aws-bootcamp-cruddur-2023/blob/main/Images/Billing%20alarm%203.png?raw=true)
