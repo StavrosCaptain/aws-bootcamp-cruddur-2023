@@ -33,3 +33,5 @@ sudo ./aws/install
 ![SNS 2](https://github.com/StavrosCaptain/aws-bootcamp-cruddur-2023/blob/main/Images/Billing%20alarm%202.png?raw=true)
 
 ![SNS 3](https://github.com/StavrosCaptain/aws-bootcamp-cruddur-2023/blob/main/Images/Billing%20alarm%203.png?raw=true)
+
+![SNS 4](https://github.com/StavrosCaptain/aws-bootcamp-cruddur-2023/blob/main/Images/Billing%20alarm%204.png?raw=true)
