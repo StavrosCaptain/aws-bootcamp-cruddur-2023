@@ -34,6 +34,6 @@ a) Update of docker-compose.yml and .gitpod files as depicted below:
 
 ![postgres and dynamodb in gitpod file](https://user-images.githubusercontent.com/80562235/228889613-3d647987-00bb-4082-ba57-335405ee20c9.png)
 
-b) Created a Table in DynamoDB and connected Postgres to a database:
+b) Creation a Table in DynamoDB and connected Postgres to a database:
 
 ![postgress connection](https://user-images.githubusercontent.com/80562235/228889790-8fb3edf5-8c36-4df9-845c-decc3279bbec.png)
