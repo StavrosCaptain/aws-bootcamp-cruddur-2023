@@ -51,7 +51,6 @@ XRayMiddleware(app, xray_recorder)
 
 # HoneyComb ------------
 # Initialize automatic instrumentation with Flask
-app = Flask(__name__)
 FlaskInstrumentor().instrument_app(app)
 RequestsInstrumentor().instrument()
 
