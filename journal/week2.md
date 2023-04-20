@@ -152,6 +152,32 @@
    ![sent batch segments](https://user-images.githubusercontent.com/80562235/233458025-0cf63e42-e569-4ebe-9eea-3d758685290a.png)
    ![sent batch segments 2](https://user-images.githubusercontent.com/80562235/233458039-00888303-bc73-4474-936f-432ac3ed2942.png)
 
+### CloudWatch Logs
+
+1) Added watchtower to requirements.txt and installed it.
+
+2) Imported python libraries and configured Logger to use CloudWatch in app.py in backend-flask:
    
+   ![cloudwatch logger in app py 0](https://user-images.githubusercontent.com/80562235/233465778-25ac1954-7111-4c66-93a9-e715b1f420c6.png)
+   ![cloudwatch logger in app py](https://user-images.githubusercontent.com/80562235/233465820-45c03366-f652-45fe-a8e5-ffcdc5afc0b8.png)
+
+3) Also added in app.py:
+
+   ![logger backend cloudwatch in aws 3](https://user-images.githubusercontent.com/80562235/233466162-d72bb514-ef45-437c-be35-c85f0c3900cb.png)
+   
+4) Updated the home_activities.py as follows:
+
+   ![cloudwatch logger in home_activities](https://user-images.githubusercontent.com/80562235/233466217-d78c4870-5180-4e1a-91fd-d2d31cfad14a.png)
+
+   Passed the LOGGER variable in HomeActivities class:
+   
+   ```
+   @app.route("/api/activities/home", methods=['GET'])
+   def data_home():
+      data = HomeActivities.run(LOGGER) <-----<<-
+      return data, 200
+   ```
+   ![cloudwatch logger in home_activities](https://user-images.githubusercontent.com/80562235/233466722-e0c03975-8fc2-473d-8f25-3b6f28abf8bb.png)
+
 
    
