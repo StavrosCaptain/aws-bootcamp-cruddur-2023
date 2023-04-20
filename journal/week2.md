@@ -159,7 +159,6 @@
 2) Imported python libraries and configured Logger to use CloudWatch in app.py in backend-flask:
    
    ![cloudwatch logger in app py 0](https://user-images.githubusercontent.com/80562235/233465778-25ac1954-7111-4c66-93a9-e715b1f420c6.png)
-   ![cloudwatch logger in app py](https://user-images.githubusercontent.com/80562235/233465820-45c03366-f652-45fe-a8e5-ffcdc5afc0b8.png)
 
 3) Also added in app.py:
 
@@ -177,7 +176,49 @@
       data = HomeActivities.run(LOGGER) <-----<<-
       return data, 200
    ```
-   ![cloudwatch logger in home_activities](https://user-images.githubusercontent.com/80562235/233466722-e0c03975-8fc2-473d-8f25-3b6f28abf8bb.png)
 
+5) Added env variables in docker-compose.yml file:
+   
+   ```
+   AWS_DEFAULT_REGION: "${AWS_DEFAULT_REGION}"
+   AWS_ACCESS_KEY_ID: "${AWS_ACCESS_KEY_ID}"
+   AWS_SECRET_ACCESS_KEY: "${AWS_SECRET_ACCESS_KEY}"
+   ```
+
+6) After docker compose up:
+
+   ![logger backend cloudwatch in aws 2](https://user-images.githubusercontent.com/80562235/233467362-0f737faa-2248-4248-93da-aba889881712.png)
+
+### Rollbar
+
+1) Added and installed add-ons in requirements.txt in backend-flask.
+
+2) Exported Rollbar access token for flask SDK:
+
+   ```
+   export ROLLBAR_ACCESS_TOKEN: "..."
+   gp env ROLLBAR_ACCESS_TOKEN: "..."
+   ```
+   and added to docker-compose.yml file.
+   
+3) Updated app.py in backend-flask as follows:
+
+   ![rollbar 2](https://user-images.githubusercontent.com/80562235/233470767-6a9a9ecf-e82a-45fc-9865-461fc88f0461.png)
+
+   ![rollbar 3](https://user-images.githubusercontent.com/80562235/233470783-38b16e49-8b09-4d8c-be20-faa76856dddb.png)
+
+4) After docker compose up, if i visit <the url of opened port 4567>/rollbar/test:
+
+   ![rollbar 4](https://user-images.githubusercontent.com/80562235/233471660-71c0c880-6181-4bef-a9ff-882c4fae2e71.png)
+   
+5) Also, when I visited my Rollbar account results had started to appear:
+
+   ![rollbar 1](https://user-images.githubusercontent.com/80562235/233471885-a13eeb8a-07ca-489d-908b-87d9e560c6a3.png)
+
+6) To check the function of Rollbar we can make a mistake on purpose, for example by removing ```return``` from ```return results``` in ```home_activities.py```. So, when i visit the same url, but with /api/activities/home, and alert is appeared in Rollbar:
+
+   ![rollbar 5](https://user-images.githubusercontent.com/80562235/233473013-bc718f3d-063b-4f0b-9e43-9b3a2f1fe9c1.png)
+
+   
 
    
