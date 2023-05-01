@@ -17,7 +17,7 @@ from services.show_activity import *
 #from services.users_short import *
 #from services.update_profile import *
 
-from lib.cognito_jwt_token import CognitoJwtToken
+from lib.cognito_jwt_token import CognitoJwtToken, extract_access_token, TokenVerifyError
 #from lib.jwt_verify_middleware import JWTVerificationMiddleware
 
 # HoneyComb ------------
