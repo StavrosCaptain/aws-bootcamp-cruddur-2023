@@ -4,7 +4,6 @@ from jose import jwk, jwt
 from jose.exceptions import JOSEError
 from jose.utils import base64url_decode
 
-
 class FlaskAWSCognitoError(Exception):
   pass
 

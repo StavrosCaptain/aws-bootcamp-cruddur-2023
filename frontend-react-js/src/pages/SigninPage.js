@@ -4,7 +4,7 @@ import {ReactComponent as Logo} from '../components/svg/logo.svg';
 import { Link } from "react-router-dom";
 
 // [TODO] Authenication
-import { Auth } from 'aws-amplify'
+import { Auth } from 'aws-amplify';
 
 export default function SigninPage() {
 
@@ -19,16 +19,14 @@ export default function SigninPage() {
     .then(user => {
       console.log('user',user)
       localStorage.setItem("access_token", user.signInUserSession.accessToken.jwtToken)
-      // Store email in local storage to use it in confirmation & sign-in page
-      localStorage.setItem('email', email); 
       window.location.href = "/"
     })
-    .catch(error => {
+    .catch(error => { 
       if (error.code == 'UserNotConfirmedException') {
         window.location.href = "/confirm"
       }
       setErrors(error.message)
-      });
+    });
     return false
   }
 
