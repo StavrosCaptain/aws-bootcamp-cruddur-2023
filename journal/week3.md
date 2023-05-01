@@ -9,10 +9,15 @@
 2. Click *Create User Pool* and change the options below:
 
   a. Sign-in options: Email
+  
   b. Multi-factor authentication: No MFA
+  
   c. Additional required attributes: name, preferred_name
+  
   d. Email: Send email with Cognito
+  
   e. User pool name: <...name...>
+  
   f. App client name: <...name...>
   
 3. Review and click *Create user pool*.
@@ -39,7 +44,7 @@ docker-compose.yml:
 
 ![Update docker-compose yml file for Amplify variables 4](https://user-images.githubusercontent.com/80562235/235535601-3e440062-aebf-4691-bab4-ad3e188d3fdf.png)
 
-4. ```HomeFeedPage.js```, ```SigninPage.js``` and ```ProfileInfo.js files were updated as below:
+4. ```HomeFeedPage.js```, ```SigninPage.js``` and ```ProfileInfo.js``` files were updated as below:
 
 HomeFeedPage.js:
 ```
@@ -313,3 +318,17 @@ class HomeActivities:
       span.set_attribute("app.result_length", len(results))
       return results
 ```
+
+4. Furthermore, updated ```docker-compose.yml``` file with the enviroment variables:
+
+![cognito jwt token verification 12](https://user-images.githubusercontent.com/80562235/235538806-a0d00cdc-81be-42d4-8f4a-47c23ad0cad2.png)
+
+5. Finally, updated the ```ProfileInfo.js``` file, to force the deletion of JWT token, with the log out of a user:
+
+![JWT 9](https://user-images.githubusercontent.com/80562235/235539036-8a4ca033-7eaa-4222-938e-54289a497c8e.png)
+
+6. The final results are depicted below:
+
+a. ![cognito jwt token verification 10](https://user-images.githubusercontent.com/80562235/235539349-abec6757-d2e2-49d9-bf5e-2aa61a538835.png)
+
+b. ![cognito jwt token verification 11](https://user-images.githubusercontent.com/80562235/235539513-3f566453-6c38-4cd8-a121-dccd52a5e849.png)
