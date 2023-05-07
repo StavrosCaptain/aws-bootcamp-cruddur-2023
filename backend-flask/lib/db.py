@@ -9,8 +9,17 @@ class Db:
     self.init_pool()
 
   def template(self,*args):
-    
-    template_path = os.path.join(app.root_path,'db','sql',name+'.sql')
+    pathing = list((app.root_path,'db','sql') + args)
+    pathing[-1] = pathing[-1] + ".sql"
+
+    template_path = os.path.join(*pathing)
+
+    green = '\033[92m'
+    no_color = '\033[0m'
+    print("\n")
+    print(f'{green}Load SQL Template: [{template_path}]]-------{no_color}')
+
+    template_path = os.path.join(*pathing)
     with open(template_path, 'r') as f:
       template_content = f.read()
     return template_content
@@ -33,16 +42,16 @@ class Db:
     is_returning_id = re.search(pattern, sql)
 
     try:
-     with self.pool.connection() as conn:
-      cur = conn.cursor()
-      cur.execute(sql,params)
-      if is_returning_id:
-         returning_id = cur.fetchone()[0]
-      conn.commit()
-      if is_returning_id:
-         return returning_id
+      with self.pool.connection() as conn:
+        cur = conn.cursor()
+        cur.execute(sql,params)
+        if is_returning_id:
+          returning_id = cur.fetchone()[0]
+        conn.commit()
+        if is_returning_id:
+          return returning_id
     except Exception as err:
-     self.print_sql_err(err)
+      self.print_sql_err(err)
   # when we want to return an array of json objects
   def query_array_json(self,sql,params={}):
     self.print_sql('array', sql)
@@ -56,13 +65,17 @@ class Db:
   # when we want to return a json object
   def query_object_json(self,sql,params={}):
     self.print_sql('json', sql)
-
+    self.print_params(params)
     wrapped_sql = self.query_wrap_object(sql)
+
     with self.pool.connection() as conn:
       with conn.cursor() as cur:
         cur.execute(wrapped_sql,params)
         json = cur.fetchone()
-        return json[0]
+        if json == None:
+          "{}"
+        else:
+          return json[0]
 
   def query_wrap_object(self, template):
     sql = f"""
