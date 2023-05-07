@@ -1,4 +1,3 @@
-import uuid
 from datetime import datetime, timedelta, timezone
 
 from lib.db import db
@@ -56,9 +55,10 @@ class CreateActivity:
       'handle':handle,
       'message':message,
       'expires_at':expires_at
-      })
+    })
+    return uuid
   def query_object_activity(uuid):
     sql = db.template('activities','object')
     return db.query_object_json(sql,{
       'uuid':uuid
-      })
+    })

@@ -29,12 +29,18 @@ class Db:
     self.pool = ConnectionPool(connection_url)
   # we want to commit data such as an insert
   # be sure to check for RETURNING in all uppercases
+  def print_params(self,params):
+    blue = '\033[94m'
+    no_color = '\033[0m'
+    print(f'{blue} SQL Params:{no_color}')
+    for key, value in params.items():
+      print(key, ":", value)
+
   def print_sql(self,title,sql):
     cyan = '\033[96m'
     no_color = '\033[0m'
-    print("\n")
     print(f'{cyan}SQL STATEMENT-[{title}]]-------{no_color}')
-    print(sql + "\n")
+    print(sql)
   def query_commit(self,sql,params={}):
     self.print_sql('commit with returning',sql)
 
@@ -76,7 +82,6 @@ class Db:
           "{}"
         else:
           return json[0]
-
   def query_wrap_object(self, template):
     sql = f"""
     (SELECT COALESCE(row_to_json(object_row),'{{}}'::json) FROM (
@@ -84,7 +89,6 @@ class Db:
     ) object_row);
     """
     return sql
-
   def query_wrap_array(self, template):
     sql = f"""
     (SELECT COALESCE(array_to_json(array_agg(row_to_json(array_row))),'[]'::json) FROM (

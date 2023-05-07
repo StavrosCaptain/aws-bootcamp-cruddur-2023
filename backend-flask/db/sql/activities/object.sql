@@ -8,4 +8,4 @@ SELECT
 FROM public.activities
 INNER JOIN public.users ON users.uuid = activities.user_uuid
 WHERE
-    activities.uuid = %s(uuid)s
+    activities.uuid = %(uuid)s

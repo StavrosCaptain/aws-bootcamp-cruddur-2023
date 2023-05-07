@@ -27,11 +27,11 @@ def lambda_handler(event, context):
         conn = psycopg2.connect(os.getenv('CONNECTION_URL'))
         cur = conn.cursor()
         params = [
-                user_display_name,
-                user_email,
-                user_handle,
-                user_cognito_id
-            ]
+            user_display_name,
+            user_email,
+            user_handle,
+            user_cognito_id
+        ]
         cur.execute(sql,*params)
         conn.commit() 
 
