@@ -19,4 +19,4 @@ const checkAuth = async (setUser) => {
     .catch((err) => console.log(err));
   };
 
-  export default checkAuth
+  export default checkAuth;
