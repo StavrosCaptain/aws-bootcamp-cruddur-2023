@@ -1,0 +1,8 @@
+{
+    "Effect": "Allow",
+    "Action": [
+      "ssm:GetParameters",
+      "ssm:GetParameter"
+    ],
+    "Resource": "arn:aws:ssm:eu-central-1:439314924498:parameter/cruddur/backend-flask/*"
+}
