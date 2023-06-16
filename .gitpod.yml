@@ -5,9 +5,10 @@ tasks:
     before: |
       cd /workspace
       curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
-      unzip awscliv2.zip
+      unzip -o awscliv2.zip
       sudo ./aws/install
       cd $THEIA_WORKSPACE_ROOT
+      source "$THEIA_WORKSPACE_ROOT/bin/ecr/login"
   - name: postgres
     before: |
       curl -fsSL https://www.postgresql.org/media/keys/ACCC4CF8.asc|sudo gpg --dearmor -o /etc/apt/trusted.gpg.d/postgresql.gpg
@@ -17,10 +18,12 @@ tasks:
     command: |
       export GITPOD_IP=$(curl ifconfig.me)
       source "$THEIA_WORKSPACE_ROOT/bin/rds/update-sg-rule"
+      ruby "$THEIA_WORKSPACE_ROOT/bin/backend/generate-env-gitpod"
+      ruby "$THEIA_WORKSPACE_ROOT/bin/frontend/generate-env-gitpod"
   - name: react-js
     command: |
-      source "$THEIA_WORKSPACE_ROOT/bin/frontend/generate-env"
       cd frontend-react-js
+      npm update -g
       npm i
   - name: flask 
     command: |
@@ -31,6 +34,7 @@ tasks:
     before: |
       curl "https://s3.amazonaws.com/session-manager-downloads/plugin/latest/ubuntu_64bit/session-manager-plugin.deb" -o "session-manager-plugin.deb"
       sudo dpkg -i session-manager-plugin.deb
+      session-manager-plugin
       cd backend-flask
 vscode:
   extensions:
