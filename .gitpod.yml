@@ -18,16 +18,15 @@ tasks:
     command: |
       export GITPOD_IP=$(curl ifconfig.me)
       source "$THEIA_WORKSPACE_ROOT/bin/rds/update-sg-rule"
-      ruby "$THEIA_WORKSPACE_ROOT/bin/backend/generate-env-gitpod"
-      ruby "$THEIA_WORKSPACE_ROOT/bin/frontend/generate-env-gitpod"
   - name: react-js
     command: |
+      ruby "$THEIA_WORKSPACE_ROOT/bin/frontend/generate-env"
       cd frontend-react-js
       npm update -g
       npm i
   - name: flask 
     command: |
-      source "$THEIA_WORKSPACE_ROOT/bin/backend/generate-env"
+      ruby "$THEIA_WORKSPACE_ROOT/bin/backend/generate-env"
       cd backend-flask
       pip install -r requirements.txt
   - name: fargate
