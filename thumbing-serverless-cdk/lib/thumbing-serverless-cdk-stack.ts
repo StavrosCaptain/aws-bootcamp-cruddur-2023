@@ -32,21 +32,21 @@ export class ThumbingServerlessCdkStack extends cdk.Stack {
 
     const uploadsBucket = this.createBucket(uploadsBucketName);
     const assetsBucket = this.importBucket(assetsBucketName);
-
+    
     // create a lambda
     const lambda = this.createLambda(
-      functionPath, 
-      uploadsBucketName, 
-      assetsBucketName, 
-      folderInput, 
+      functionPath,
+      uploadsBucketName,
+      assetsBucketName,
+      folderInput,
       folderOutput
     );
-
+  
     // create topic and subscription
     const snsTopic = this.createSnsTopic(topicName)
     this.createSnsSubscription(snsTopic,webhookUrl)
 
-    // add our s3 event notifications
+    // S3 Event Notifications
     this.createS3NotifyToLambda(folderInput,lambda,uploadsBucket)
     this.createS3NotifyToSns(folderOutput,snsTopic,assetsBucket)
 
@@ -70,7 +70,7 @@ export class ThumbingServerlessCdkStack extends cdk.Stack {
   }
 
   importBucket(bucketName: string): s3.IBucket {
-    const bucket = s3.Bucket.fromBucketName(this,"AssetsBucket",bucketName);
+    const bucket = s3.Bucket.fromBucketName(this, "AssetsBucket", bucketName);
     return bucket;
   }
 
@@ -88,10 +88,10 @@ export class ThumbingServerlessCdkStack extends cdk.Stack {
       }
     });
     return lambdaFunction;
-  } 
+  }
 
-  createS3NotifyToLambda(prefix: string, lambda: lambda.IFunction, bucket: s3.IBucket): void {
-    const destination = new s3n.LambdaDestination(lambda);
+  createS3NotifyToLambda(prefix: string, Lambda: lambda.IFunction, bucket: s3.IBucket): void {
+    const destination = new s3n.LambdaDestination(Lambda);
     bucket.addEventNotification(
       s3.EventType.OBJECT_CREATED_PUT,
       destination//,
@@ -135,7 +135,6 @@ export class ThumbingServerlessCdkStack extends cdk.Stack {
       {prefix: prefix}
     );
   }
-
   /*
   createPolicySnSPublish(topicArn: string){
     const snsPublishPolicy = new iam.PolicyStatement({
