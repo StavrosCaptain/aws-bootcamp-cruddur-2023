@@ -2,12 +2,10 @@ from lib.db import db
 # from aws_xray_sdk.core import xray_recorder
 class UserActivities:
   def run(user_handle):
-    #try:
       model = {
         'errors': None,
         'data': None      
       }
-
       if user_handle == None or len(user_handle) < 1:
         model['errors'] = ['blank_user_handle']
       else:

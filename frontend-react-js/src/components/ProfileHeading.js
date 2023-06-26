@@ -17,7 +17,6 @@ export default function ProfileHeading(props) {
             <img src="https://assets.captaincruddur.com/avatars/data.jpeg"></img>
           </div>
         </div>
-
         <div class="info">
           <div class="id">
             <div className="display_name">{props.profile.display_name}</div>
@@ -25,6 +24,7 @@ export default function ProfileHeading(props) {
           </div>
           <EditProfileButton setPopped={props.setPopped} />
         </div>
+        
   </div>
   );
 }
