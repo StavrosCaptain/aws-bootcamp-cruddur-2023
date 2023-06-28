@@ -15,7 +15,7 @@ from services.messages import *
 from services.create_message import *
 from services.show_activity import *
 from services.users_short import *
-#from services.update_profile import *
+from services.update_profile import *
 
 from lib.cognito_jwt_token import CognitoJwtToken, extract_access_token, TokenVerifyError
 #from lib.jwt_verify_middleware import JWTVerificationMiddleware
@@ -156,9 +156,6 @@ def data_messages(message_group_uuid):
   access_token = extract_access_token(request.headers)
   try:
     claims = cognito_jwt_token.verify(access_token)
-    # authenicated request
-    app.logger.debug("authenicated")
-    app.logger.debug(claims)
     cognito_user_id = claims['sub']
     model = Messages.run(
       cognito_user_id=cognito_user_id,
