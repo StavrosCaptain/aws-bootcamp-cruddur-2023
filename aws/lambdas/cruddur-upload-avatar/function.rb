@@ -7,13 +7,17 @@ def handler(event:, context:)
     bucket_name = ENV["UPLOADS_BUCKET_NAME"]
     object_key = 'mock.jpg'
 
-    #"#{cognito_user_uuid}.#{extension}"
-
-    #puts({object_key: object_key}.to_json)
-
     obj = s3.bucket(bucket_name).object(object_key)
     url = obj.presigned_url(:put, expires_in: 60 * 5)
     url # this is the data that will be returned
     body = {url: url}.to_json
-    { statusCode: 200, body: body }
+    { 
+      headers: {
+        "Access-Control-Allow-Headers": "*, Authorization",
+        "Access-Control-Allow-Origin": "https://3000-stavroscapt-awsbootcamp-18b93zpylmi.ws-eu101.gitpod.io",
+        "Access-Control-Allow-Methods": "OPTIONS,GET,POST"
+      },
+      statusCode: 200, 
+      body: body 
+    }
 end
