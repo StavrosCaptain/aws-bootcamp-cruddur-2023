@@ -50,6 +50,6 @@ for migration_file in migration_files:
       if last_successful_run > file_time:
         last_migration_file = module_name
         mod = importlib.import_module(module_name)
-        print('=== rolling back: ', module_name)
+        print('=== rolling back: ',module_name)
         mod.migration.rollback()
         set_last_successful_run(file_time)
