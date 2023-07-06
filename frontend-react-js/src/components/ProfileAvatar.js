@@ -1,7 +1,7 @@
 import './ProfileAvatar.css';
 
 export default function ProfileAvatar(props) {
-  const backgroundImage = `url("https://assets.captaincruddur.com/avatars/data.jpeg")`;
+  const backgroundImage = `url("https://assets.captaincruddur.com/avatars/${props.id}.jpeg")`;
   const styles = {
     backgroundImage: backgroundImage,
     backgroundSize: 'cover',
